@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &450258803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc15ecfa097129b45b37c49bc3e3d6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: {fileID: 702923401}
   DefaultMax: 1000
   DefaultMin: 1
+  Text: {fileID: 702923401}
 --- !u!4 &450258804
 Transform:
   m_ObjectHideFlags: 0

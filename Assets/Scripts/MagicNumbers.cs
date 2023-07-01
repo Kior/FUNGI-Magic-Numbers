@@ -5,26 +5,20 @@ public class MagicNumbers : MonoBehaviour
 {
     #region Variables
 
-    public TMP_Text Text;
     public int DefaultMax = 1000;
     public int DefaultMin = 1;
-    private int _defaultPress = 0;
 
+    public TMP_Text Text;
 
     private int _guess;
+    private bool _isNewGame;
     private int _max;
     private int _min;
-    private bool _newGame;
     private int _press;
 
     #endregion
 
     #region Unity lifecycle
-
-    private void _setText(string text)
-    {
-        Text.text = text;
-    }
 
     private void Start()
     {
@@ -33,7 +27,7 @@ public class MagicNumbers : MonoBehaviour
 
     private void Update()
     {
-        if (_newGame)
+        if (_isNewGame)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -59,8 +53,9 @@ public class MagicNumbers : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            _setText($"Поздравляю! Я угадал! Твоё число {_guess}. Сделано {_press} ходов! Нажми пробел чтобы начать новую игру. Значения min, max и guess будут сброшены.");
-            _newGame = true;
+            SetText(
+                $"Поздравляю! Я угадал! Твоё число {_guess}. Сделано {_press} ходов! Нажми пробел чтобы начать новую игру. Значения min, max и guess будут сброшены.");
+            _isNewGame = true;
         }
     }
 
@@ -70,7 +65,7 @@ public class MagicNumbers : MonoBehaviour
 
     private void AskAboutGuess()
     {
-        _setText($"Твоё число {_guess}?");
+        SetText($"Твоё число {_guess}?");
     }
 
     private void CalculateGuess()
@@ -82,12 +77,17 @@ public class MagicNumbers : MonoBehaviour
     {
         _max = DefaultMax;
         _min = DefaultMin;
-        _press = _defaultPress;
-        _setText($"Привет! Загадай число от {_min} до {_max}");
+        _press = 0;
+        SetText($"Привет! Загадай число от {_min} до {_max}");
         CalculateGuess();
         AskAboutGuess();
-        _newGame = false;
+        _isNewGame = false;
         //ctrl + R + M, быстро создать метод на повторяющиеся строки.
+    }
+
+    private void SetText(string text)
+    {
+        Text.text = text;
     }
 
     #endregion
